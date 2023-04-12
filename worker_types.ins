@@ -1,0 +1,14 @@
+rem worker_types.ins
+rem by Lucas Gitirana on 2023-04-12
+rem
+
+INSERT INTO WORKER_TYPES(id, code, description)
+VALUES(WORKER_TYPES_ID.nextval,'C','Contractor');
+
+INSERT INTO WORKER_TYPES(id, code, description)
+VALUES(WORKER_TYPES_ID.nextval, 'E', 'Employee');
+
+INSERT INTO WORKER_TYPES(id, code, description)
+VALUES(WORKER_TYPES_ID.nextval, 'U', 'Unknown');
+
+commit;

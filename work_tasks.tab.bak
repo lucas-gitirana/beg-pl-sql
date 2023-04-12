@@ -1,0 +1,36 @@
+rem work_tasks.tab
+rem by Lucas Gitirana on 2023-04-12
+rem
+
+create table WORK_TASKS(
+id number(38) not null,
+work_id number(38) not null,
+task_id number(38) not null,
+hazard_level_type_id number(38) not null,
+active_date date default sysdate not null,
+inactive_date date default '31-12-9999' not null
+);
+
+create sequence WORK_ASSIGNMENTS_ID start with 1;
+
+alter table WORK_TASKS add
+constraint WORK_TASKS_PK
+primary key (id)
+using index;
+
+alter table WORK_TASKS add
+constraint WORK_ASSIGNMENTS_UK
+unique (active_date)
+using index;
+
+alter table WORK_TASKS ADD
+constraint WORK_TASKS_FK1
+foreign key (work_id) references WORKS(id);
+
+alter table WORK_TASKS add
+constraint WORK_TASKS_FK2
+foreign key (task_id) references TASKS(id);
+
+alter table WORK_TASKS ADD
+constraint WORK_TASKS_FK3
+foreign key (hazard_level_type_id) references HAZARD_LEVEL_TYPES(id);
