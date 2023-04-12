@@ -1,5 +1,5 @@
 # beg-pl-sql
-Database created for studies of PL/SQL using the book Beginning Oracle/PL SQL by Donald J. Bales.
+Database created for PL/SQL studies using the book Beginning Oracle/PL SQL by Donald J. Bales.
 
 Exercise: 
 You’re going to do some software development for a company called Very Dirty Manufacturing, Inc. (VDMI). 
