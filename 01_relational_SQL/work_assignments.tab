@@ -1,0 +1,31 @@
+rem work_assignments.tab
+rem by Lucas Gitirana on 2023-04-12
+rem
+
+create table WORK_ASSIGNMENTS(
+id number(38) not null,
+worker_id number(38) not null,
+work_id number(38) not null,
+active_date date default sysdate not null,
+inactive_date date default '31-12-9999' not null
+);
+
+create sequence WORK_ASSIGNMENTS_ID start with 1;
+
+alter table WORK_ASSIGNMENTS add
+constraint WORK_ASSIGNMENTS_PK
+primary key (id)
+using index;
+
+alter table WORK_ASSIGNMENTS add
+constraint WORK_ASSIGNMENTS_UK
+unique (worker_id, active_date)
+using index;
+
+alter table WORK_ASSIGNMENTS add
+constraint WORK_ASSIGNMENTS_FK1
+foreign key (worker_id) references WORKERS(id);
+
+alter table WORK_ASSIGNMENTS ADD
+constraint WORK_ASSIGNMENTS_FK2
+foreign key (work_id) references WORKS(id);

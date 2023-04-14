@@ -1,0 +1,31 @@
+rem logical_assignments.tab
+rem by Lucas Gitirana on 2023-04-12
+rem
+
+create table LOGICAL_ASSIGNMENTS(
+id number(38) not null,
+worker_id number(38) not null,
+logical_workplace_id number(38) not null,
+active_date date default sysdate not null,
+inactive_date date default '31-12-9999' not null
+);
+
+create sequence LOGICAL_ASSIGNMENTS_ID start with 1;
+
+alter table LOGICAL_ASSIGNMENTS ADD
+CONSTRAINTS LOGICAL_ASSIGNMENTS_PK
+primary key (id)
+using index;
+
+alter table LOGICAL_ASSIGNMENTS add
+constraint LOGICAL_ASSIGNMENTS_UK
+unique(worker_id, active_date)
+using index;
+
+alter table LOGICAL_ASSIGNMENTS ADD
+constraint LOGICAL_ASSIGNMENTS_FK1
+foreign key (worker_id) references WORKERS(id);
+
+alter table LOGICAL_ASSIGNMENTS add
+constraint LOGICAL_ASSIGNMENTS_FK2
+foreign key (logical_workplace_id) references LOGICAL_WORKPLACES(id);

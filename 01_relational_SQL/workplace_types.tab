@@ -1,0 +1,25 @@
+rem workplace_types.tab
+rem by Lucas Gitirana on 2023-04-12
+rem
+
+CREATE TABLE WORKPLACE_TYPES(
+id number(38) not null,
+logical_indicator number(1) DEFAULT 0 not null,
+physical_indicator number(1) DEFAULT 0 not null,
+code varchar2(30) not null,
+description varchar2(80) not null,
+active_date date DEFAULT SYSDATE not null,
+inactive date DEFAULT '31-12-9999' not null
+);
+
+CREATE SEQUENCE WORKPLACE_TYPES_ID START WITH 1;
+
+ALTER TABLE WORKPLACE_TYPES ADD
+CONSTRAINTS WORKPLACE_TYPES_PK
+PRIMARY KEY (id)
+USING INDEX;
+
+ALTER TABLE WORKPLACE_TYPES ADD
+CONSTRAINTS WORKPLACE_TYPES_UK
+UNIQUE (code)
+USING INDEX;

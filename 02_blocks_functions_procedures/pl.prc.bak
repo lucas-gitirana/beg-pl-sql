@@ -1,0 +1,7 @@
+CREATE OR REPLACE PROCEDURE pl(aiv_text IN VARCHAR) IS
+begin
+	SYS.DBMS_OUTPUT.put_line(aiv_text);
+end pl
+/;
+
+pl('Hello, World!')
