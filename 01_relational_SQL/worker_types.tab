@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 rem worker_types.tab
 rem by Lucas Gitirana on 2023-04-12
 rem
@@ -41,3 +42,48 @@ VALUES(WORKER_TYPES_ID.nextval, 'U', 'Unknown');
 
 commit;
 
+=======
+rem worker_types.tab
+rem by Lucas Gitirana on 2023-04-12
+rem
+
+create table WORKER_TYPES(
+id NUMBER(38) not null,
+code varchar(30) not null,
+description varchar(80) not null,
+active_date date DEFAULT SYSDATE not null,
+inactive_date date DEFAULT '31-12-1999' not null
+);
+
+CREATE SEQUENCE WORKER_TYPES_ID START WITH 1;
+
+ALTER TABLE WORKER_TYPES ADD
+CONSTRAINTS WORKER_TYPES_PK
+PRIMARY KEY(id)
+USING INDEX;
+
+ALTER TABLE WORKER_TYPES ADD
+CONSTRAINTS WORKER_TYPES_UK
+UNIQUE (code, active_date)
+USING INDEX;
+
+execute SYS.DBMS_STATS.gather_table_stats(USER, 'WORKER_TYPES');
+
+---------------------------------------------------
+
+rem worker_types.ins
+rem by Lucas Gitirana on 2023-04-12
+rem
+
+INSERT INTO WORKER_TYPES(id, code, description)
+VALUES(WORKER_TYPES_ID.nextval,'C','Contractor');
+
+INSERT INTO WORKER_TYPES(id, code, description)
+VALUES(WORKER_TYPES_ID.nextval, 'E', 'Employee');
+
+INSERT INTO WORKER_TYPES(id, code, description)
+VALUES(WORKER_TYPES_ID.nextval, 'U', 'Unknown');
+
+commit;
+
+>>>>>>> ddee3f76b3597226b427908a40eade43cbc9e549

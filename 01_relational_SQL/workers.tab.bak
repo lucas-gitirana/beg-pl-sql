@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 rem workers.tab
 rem by Lucas Gitirana on 2023-04-12
 rem
@@ -39,4 +40,47 @@ FOREIGN KEY (worker_type_id) REFERENCES WORKER_TYPES(id);
 
 ALTER TABLE WORKERS ADD
 CONSTRAINTS WORKERS_FK2
+=======
+rem workers.tab
+rem by Lucas Gitirana on 2023-04-12
+rem
+
+CREATE TABLE WORKERS(
+id number(38) not null,
+worker_type_id number(38) not NULL,
+external_id varchar2(30)not NULL,
+first_name varchar2(30) not null,
+middle_name varchar2(30),
+last_name varchar2(30) not null,
+name varchar2(100) not null,
+birth_date date not null,
+gender_type_id number not null
+);
+
+CREATE SEQUENCE WORKERS_ID START WITH 1;
+
+CREATE SEQUENCE EXTERNAL_ID_SEQ START WITH 100000000 order;
+
+ALTER TABLE WORKERS ADD
+CONSTRAINTS WORKERS_PK
+PRIMARY KEY (id)
+USING INDEX;
+
+ALTER TABLE WORKERS ADD
+CONSTRAINTS WORKERS_UK1
+UNIQUE(external_id)
+USING INDEX;
+
+ALTER TABLE WORKERS ADD
+CONSTRAINTS WORKERS_UK2
+UNIQUE (name, birth_date, gender_type_id,)
+USING INDEX;
+
+ALTER TABLE WORKERS ADD
+CONSTRAINTS WORKERs_FK1
+FOREIGN KEY (worker_type_id) REFERENCES WORKER_TYPES(id);
+
+ALTER TABLE WORKERS ADD
+CONSTRAINTS WORKERS_FK2
+>>>>>>> ddee3f76b3597226b427908a40eade43cbc9e549
 FOREIGN KEY (gender_type_id) REFERENCES GENDER_TYPES(id);

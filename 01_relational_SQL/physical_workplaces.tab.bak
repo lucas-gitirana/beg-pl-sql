@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 rem logical_workplaces.tab
 rem by Lucas Gitirana on 2023-04-12
 rem
@@ -31,4 +32,39 @@ FOREIGN KEY (workplace_type_id) REFERENCES WORKPLACE_TYPES(id);
 ALTER TABLE PHYSICAL_WORKPLACES ADD
 CONSTRAINTS PHYSICAL_WORKPLACES_UK
 UNIQUE (code, name, active_date)
+=======
+rem logical_workplaces.tab
+rem by Lucas Gitirana on 2023-04-12
+rem
+
+CREATE TABLE PHYSICAL_WORKPLACES(
+id number(38) not null,
+parent_id number(38),
+id_context varchar2(100) not null,
+workplace_type_id number(38) not null,
+code varchar2(30) not null,
+name varchar2(80) not null,
+active_date date DEFAULT SYSDATE not null,
+inactive_date date default '31-12-9999' not null
+);
+
+CREATE SEQUENCE PHYSICAL_WORKPLACES_ID START WITH 1;
+
+ALTER TABLE PHYSICAL_WORKPLACES ADD
+CONSTRAINTS PHYSICAL_WORKPLACES_PK
+PRIMARY KEY (id)
+USING INDEX;
+
+ALTER TABLE PHYSICAL_WORKPLACES ADD
+CONSTRAINTS PHYSICAL_WORKPLACES_FK1
+FOREIGN KEY (parent_id) REFERENCES PHYSICAL_WORKPLACES(id);
+
+ALTER TABLE PHYSICAL_WORKPLACES ADD
+CONSTRAINTS PHYSICAL_WORKPLACES_FK2
+FOREIGN KEY (workplace_type_id) REFERENCES WORKPLACE_TYPES(id);
+
+ALTER TABLE PHYSICAL_WORKPLACES ADD
+CONSTRAINTS PHYSICAL_WORKPLACES_UK
+UNIQUE (code, name, active_date)
+>>>>>>> ddee3f76b3597226b427908a40eade43cbc9e549
 USING INDEX;

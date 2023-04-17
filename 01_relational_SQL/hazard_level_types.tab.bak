@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 rem gender_types.tab
 rem by Lucas Gitirana on 2023-04-12
 rem
@@ -21,4 +22,29 @@ USING INDEX;
 ALTER TABLE HAZARD_LEVEL_TYPES
 ADD CONSTRAINTS HAZARD_LEVEL_TYPES_UK
 UNIQUE (code, active_date)
+=======
+rem gender_types.tab
+rem by Lucas Gitirana on 2023-04-12
+rem
+
+CREATE TABLE HAZARD_LEVEL_TYPES(
+id number(38) not null,
+code varchar(30) not null,
+description varchar(80) not null,
+magnitude varchar(30) not null,
+active_date date DEFAULT SYSDATE not null,
+inactive_date date DEFAULT '31-12-1999' not null
+);
+
+CREATE SEQUENCE HAZARD_LEVEL_TYPES_ID START WITH 1;
+
+ALTER TABLE HAZARD_LEVEL_TYPES 
+ADD CONSTRAINTS HAZARD_LEVEL_TYPES_PK
+PRIMARY KEY (id)
+USING INDEX;
+
+ALTER TABLE HAZARD_LEVEL_TYPES
+ADD CONSTRAINTS HAZARD_LEVEL_TYPES_UK
+UNIQUE (code, active_date)
+>>>>>>> ddee3f76b3597226b427908a40eade43cbc9e549
 USING INDEX;
