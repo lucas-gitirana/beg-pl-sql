@@ -1,0 +1,13 @@
+create table WORKER_TYPES of WORKER_TYPE;
+
+create sequence WORKER_TYPES_ID start with 1;
+
+alter table WORKER_TYPES add
+constraint WORKER_TYPES_PK
+primary key (id)
+using index;
+
+alter table WORKER_TYPES add
+constraint WORKER_TYPES_UK
+unique(code)
+using index;

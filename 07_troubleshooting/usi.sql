@@ -1,0 +1,1 @@
+execute SYS.DBMS_OUTPUT.put_line('unique_session_id = '||SYS.DBMS_SESSION.unique_session_id);
